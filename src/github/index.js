@@ -1,5 +1,5 @@
 import getRepos from "./service";
 
 export default function () {
-    getRepos().then(arr => alert(arr.length));
+    getRepos().then(arr => arr.forEach(r => alert(r)));
 }
