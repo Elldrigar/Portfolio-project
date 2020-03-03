@@ -1,5 +1,5 @@
 import getRepos from "./service";
 
-export default function () {
-    getRepos().then(arr => arr.forEach(r => alert(r)));
+export default  async function () {
+    (await getRepos()).forEach(r => alert(r));
 }
