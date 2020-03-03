@@ -1,0 +1,26 @@
+{
+  "name": "portfolio",
+  "version": "0.1.0",
+  "description": "Programmers' portfolio",
+  "main": "src/index.js",
+  "scripts": {
+    "build-prod": "webpack",
+    "build": "webpack --mode development",
+    "start": "npm run build"
+  },
+  "keywords": [
+    "portfolio",
+    "programmer"
+  ],
+  "author": "Elldrigar",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  }
+}
