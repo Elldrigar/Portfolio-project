@@ -1,5 +1,10 @@
+import {GitHubRepo} from "./model";
+
 const reposURL = 'https://api.github.com/users/Elldrigar/repos';
 const forbiddenRepos = ['Portfolio-project','JSVanilla_Infinite-scroll-posts'];
+const convert = ({name, stargazers_count: stars, license
+                 }) => new GitHubRepo({name, stars, license: license ? license.spdx_id : ''
+});
 
 export default function getRepos() {
     return fetch(reposURL)
