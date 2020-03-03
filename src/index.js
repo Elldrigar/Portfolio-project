@@ -4,11 +4,9 @@ import { getBlogPost } from "./github/service";
 // import main from './github/index';
 import main from './joke/index';
 
+import init from './blog/index';
 
-getBlogPost('0.md').then((blogPost) => {
-    const md = document.createElement('mark-down');
-    md.textContent = blogPost;
-    document.body.appendChild(md);
-});
+init();
+
 // main();
 
