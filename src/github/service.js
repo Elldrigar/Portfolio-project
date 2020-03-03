@@ -12,16 +12,16 @@ const convert = ({
     license: license ? license.spdx_id : ''
 });
 
-export default function getRepos() {
-    return fetch(reposURL)
-        .then((response) => {
+export default async function getRepos() {
+    try {
+    const response = await fetch(reposURL);
             if (response.ok) {
-                return response.json();
+                return (await response.json())
+                    .filter(r => !forbiddenRepos.includes(r.name))
+                    .map(convert);
             }
             throw Error('Response is not 200');
-        })
-        .then(arr => arr
-            .filter(r => !forbiddenRepos.includes(r.name))
-            .map(convert))
-        .catch(err => console.warn(err))
+        } catch(err) {console.warn(err);
+        return[]
+    }
 }
