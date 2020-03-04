@@ -4,9 +4,11 @@ import { getBlogPost } from "./github/service";
 // import main from './github/index';
 import main from './joke/index';
 
-import init from './blog/index';
+import initInfo from './about-me/index';
+import initBlog from './blog/index';
 
-init();
+initInfo();
+initBlog();
 
 // main();
 
