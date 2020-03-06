@@ -12,5 +12,38 @@
 body {
     font-size: 14px;
     background-color: var(--color-bgc);
-    color:var(--color-text)
+    color:var(--color-text);
+}
+
+section {
+    padding-top: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(150px + 50%);
+    margin: 0 auto;
+}
+
+img {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    margin-right: 12px;
+}
+
+ul {
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+li {
+    transition: .5s;
+    margin: 0 15px;
+    cursor: pointer;
+}
+li:hover {
+    transform: scale(1.2);
 }
