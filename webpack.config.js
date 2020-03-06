@@ -10,7 +10,8 @@ module.exports = {
             template: 'src/index.html'
         }),
         new copyPlugin([
-            {from: 'src/assets/', to: 'assets'}
+            {from: 'src/assets/', to: 'assets'},
+            {from: 'src/css/', to: 'css'}
         ])
     ]
 };
