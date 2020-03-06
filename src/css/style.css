@@ -1,0 +1,16 @@
+:root {
+    --color-bgc: #b6b6b6;
+    --color-text: #282828;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+    background-color: var(--color-bgc);
+    color:var(--color-text)
+}
