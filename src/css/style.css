@@ -47,3 +47,6 @@ li {
 li:hover {
     transform: scale(1.2);
 }
+ul li a {
+    text-decoration-line: none;
+}
