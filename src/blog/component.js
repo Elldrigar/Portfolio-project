@@ -5,12 +5,13 @@ export class Header extends HTMLElement {
     constructor() {
         super();
         const header = document.createElement('header');
+        header.className = style.header;
         header.innerHTML = `
         <div class="${style.container}">
             <h1 class="${style['header-heading']}">Blog gawron Me</h1>
         </div>
         `;
-        this.attachShadow({mode: 'open' }).appendChild(header);
+        this.appendChild(header);
     }
 }
 
