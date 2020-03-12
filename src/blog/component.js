@@ -21,7 +21,8 @@ export class Header extends HtmlElementWithContent {
             <h1 class="${style['header-heading']}">Blog gawron Me</h1>
         `);
     }
-}
+;}
+
 export class Navigation extends HtmlElementWithContent {
     constructor() {
         super('nav', style['nav-bar'], `
@@ -31,6 +32,61 @@ export class Navigation extends HtmlElementWithContent {
           <li><a href="#">Link3</a></li>
         </ul>
         `);
+    }
+}
+
+export class Footer extends HtmlElementWithContent{
+    constructor() {
+        super('footer', style.footer, '&copy; Wszelkie prawa zastrzeżone gawron.me 2020');
+    }
+}
+
+export class Body extends HTMLElement {
+    constructor() {
+        super();
+        const section = document.createElement('section');
+        section.innerHTML = `
+        <style>
+            .${style.container} {
+                max-width: 70em;
+                margin: 0 auto;
+            }
+            section {
+                overflow: hidden;
+                padding: 1em 1.25em;
+                background-color: #fff;
+            }
+            .main, .aside {
+                margin-bottom: 1em;
+            }
+            @media (min-width: 55em) {
+            section {
+                 padding: 2em 3em;
+            }
+            
+            main {
+                 float: left;
+                 width: 65%;
+                 margin-right: 5%;
+                 margin-bottom: 1em;
+                 }
+            aside {
+                 float: left;
+                 width: 30%;
+                 margin-bottom: 1em;
+                 }
+             }
+        </style>
+        <div class="${style.container}">
+          <main>
+             <slot name="posts"></slot>         
+          </main>
+          <aside>
+            <slot name="side-menu"></slot>      
+          </aside>
+        </div>
+        `;
+        this.attachShadow({mode: 'open'}).appendChild(section);
     }
 }
 

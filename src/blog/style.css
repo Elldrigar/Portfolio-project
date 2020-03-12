@@ -94,18 +94,6 @@ Layout styles
     padding: 0;
 }
 
-.content
-{
-    overflow: hidden;
-    padding: 1em 1.25em;
-    background-color: #fff;
-}
-
-.main, .aside
-{
-    margin-bottom: 1em;
-}
-
 .footer
 {
     color: #fff;
@@ -238,23 +226,6 @@ Wide styles
 {
     .header { padding: 1.5em 3em; }
     .nav-bar { padding: 1em 3em; }
-    .content { padding: 2em 3em; }
-
-    .main
-    {
-        float: left;
-        width: 65%;
-        margin-right: 5%;
-        margin-bottom: 1em;
-    }
-
-    .aside
-    {
-        float: left;
-        width: 30%;
-        margin-bottom: 1em;
-    }
-
     .footer { padding: 2em 3em; }
 
     .nav li
