@@ -8,6 +8,7 @@ import initInfo from './about-me/index';
 import initBlog from './blog/index';
 
 initInfo();
+initBlog();
 
 const game = document.querySelector('.game');
 const joke = document.querySelector('.joke');
