@@ -1,4 +1,4 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const copyPlugin = require('copy-webpack-plugin');
 
@@ -17,5 +17,13 @@ module.exports = {
             {from: 'src/assets/', to: 'assets'},
             {from: 'src/css/', to: 'css'}
         ])
-    ]
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader?modules'],
+            },
+        ],
+    },
 };
