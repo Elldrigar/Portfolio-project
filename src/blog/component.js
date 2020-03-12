@@ -6,7 +6,11 @@ class HtmlElementWithContent extends HTMLElement {
         super();
         const element = document.createElement(tag);
         element.className = tagStyle;
-        element.innerHTML = content;
+        element.innerHTML = `
+        <div class="${style.container}">
+            ${content}
+        </div>    
+        `;
         this.appendChild(element);
     }
 }
@@ -14,9 +18,18 @@ class HtmlElementWithContent extends HTMLElement {
 export class Header extends HtmlElementWithContent {
     constructor() {
         super('header', style.header, `
-        <div class="${style.container}">
             <h1 class="${style['header-heading']}">Blog gawron Me</h1>
-        </div>
+        `);
+    }
+}
+export class Navigation extends HtmlElementWithContent {
+    constructor() {
+        super('nav', style['nav-bar'], `
+        <ul class="${style.nav}">
+          <li><a href="#">Link1</a></li>
+          <li><a href="#">Link2</a></li>
+          <li><a href="#">Link3</a></li>
+        </ul>
         `);
     }
 }
