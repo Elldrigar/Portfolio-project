@@ -1,17 +1,23 @@
 import { getBlogPost } from "../github/service";
 import style from './style.css';
 
-export class Header extends HTMLElement {
-    constructor() {
+class HtmlElementWithContent extends HTMLElement {
+    constructor(tag, tagStyle, content) {
         super();
-        const header = document.createElement('header');
-        header.className = style.header;
-        header.innerHTML = `
+        const element = document.createElement(tag);
+        element.className = tagStyle;
+        element.innerHTML = content;
+        this.appendChild(element);
+    }
+}
+
+export class Header extends HtmlElementWithContent {
+    constructor() {
+        super('header', style.header, `
         <div class="${style.container}">
             <h1 class="${style['header-heading']}">Blog gawron Me</h1>
         </div>
-        `;
-        this.appendChild(header);
+        `);
     }
 }
 
