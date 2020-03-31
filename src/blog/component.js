@@ -44,9 +44,28 @@ export class Footer extends HtmlElementWithContent{
 export class Body extends HTMLElement {
     constructor() {
         super();
-        const section = document.createElement('section');
-        getBlogPostNames().then((posts) => {
-            section.innerHTML = `
+        this.attachShadow({ mode: 'open' });
+        this.render();
+    }
+
+    async render() {
+        const posts = await getBlogPostNames();
+        this.shadowRoot.innerHTML = (`
+        <section>
+        ${this.renderStyles()}
+        <div class="${style.container}">
+          <main>
+             ${posts.reverse().map(postName => `<blog-post post-name="${postName}"></blog-post>`).join('<hr>')}        
+          </main>
+          <aside>
+            <slot name="side-menu"></slot>      
+          </aside>
+        </div>
+        </section>
+        `);
+    }
+    renderStyles() {
+        return (`
         <style>
             .${style.container} {
                 max-width: 70em;
@@ -78,18 +97,8 @@ export class Body extends HTMLElement {
                  }
              }
         </style>
-        <div class="${style.container}">
-          <main>
-             ${posts.reverse().map(postName => `<blog-post post-name="${postName}"></blog-post>`).join('<hr>')}        
-          </main>
-          <aside>
-            <slot name="side-menu"></slot>      
-          </aside>
-        </div>
-        `;
-            this.attachShadow({mode: 'open'}).appendChild(section);
-        });
-    }
+        `);
+    };
 }
 
 export class BlogPost extends HTMLElement {
@@ -98,20 +107,24 @@ export class BlogPost extends HTMLElement {
     }
     constructor() {
         super();
-        this.shadow = this.attachShadow( { mode: 'open'});
+        this.attachShadow( { mode: 'open'});
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
         this.render();
     }
     async render() {
-        this.clean();
         const name = this.getAttribute('post-name');
-        const md = document.createElement('mark-down');
-        md.textContent = await getBlogPost(`${name}.md`);
-        this.shadow.appendChild(md);
-    }
-    clean() {
-        this.shadow.childNodes.forEach(child => child.remove());
+        const content = (await getBlogPost(`${name}.md`));
+        this.shadowRoot.innerHTML = (`
+        <article>
+            <mark-down>
+                ${content}
+            </mark-down>
+        </article>
+        <style>
+           
+        </style>
+        `);
     }
 }
