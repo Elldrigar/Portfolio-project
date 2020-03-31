@@ -45,7 +45,8 @@ export class Body extends HTMLElement {
     constructor() {
         super();
         const section = document.createElement('section');
-        section.innerHTML = `
+        getBlogPostNames().then((posts) => {
+            section.innerHTML = `
         <style>
             .${style.container} {
                 max-width: 70em;
@@ -79,14 +80,15 @@ export class Body extends HTMLElement {
         </style>
         <div class="${style.container}">
           <main>
-             <slot name="posts"></slot>         
+             ${posts.reverse().map(postName => `<blog-post post-name="${postName}"></blog-post>`).join('<hr>')}        
           </main>
           <aside>
             <slot name="side-menu"></slot>      
           </aside>
         </div>
         `;
-        this.attachShadow({mode: 'open'}).appendChild(section);
+            this.attachShadow({mode: 'open'}).appendChild(section);
+        });
     }
 }
 
