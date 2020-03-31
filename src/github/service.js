@@ -1,10 +1,12 @@
-import {GitHubRepo} from "./model";
+import { GitHubRepo } from "./model";
 
 const reposURL = 'https://api.github.com/users/Elldrigar/repos';
 const forbiddenRepos = ['Portfolio-project', 'JSVanilla_Infinite-scroll-posts'];
 const rawURL = 'https://raw.githubusercontent.com/Elldrigar/Elldrigar.github.io/master/';
+const blogFiles ='https://api.github.com/repos/Elldrigar/Elldrigar.github.io/contents/blog';
 const postsURL = 'blog/';
 const aboutMe = 'blog/about-me.md';
+const postName = /(\d+)\.md/;
 
 const convert = ({
     name,
@@ -48,5 +50,19 @@ export async function getBlogPost(name = '0.md') {
 
 export async function getAboutMe() {
     return getRawFileContent(aboutMe);
+}
+
+export async function getBlogPostNames() {
+    try {
+        const response = await fetch(blogFiles);
+        if (response.ok) {
+            return (await response.json())
+                .filter(file => postName.test(file.name))
+                .map(({ name }) => name.split('.')[0]);
+        }
+        throw Error('Response is not 200');
+    } catch(err) {console.warn(err);
+        return[]
+    }
 
 }

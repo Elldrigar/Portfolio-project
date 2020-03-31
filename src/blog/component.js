@@ -1,4 +1,4 @@
-import { getBlogPost } from "../github/service";
+import { getBlogPost, getBlogPostNames } from "../github/service";
 import style from './style.css';
 
 class HtmlElementWithContent extends HTMLElement {
